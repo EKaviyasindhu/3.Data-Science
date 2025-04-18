@@ -66,8 +66,8 @@ class Univariate():
         FreqTable = pd.DataFrame(columns = ["Unique_Values", "Frequency","Relative_Frequency", "Cumsum"])
         FreqTable["Unique_Values"] = dataset[columnName].value_counts().index
         FreqTable["Frequency"] = dataset[columnName].value_counts().values
-        NumRows = FreqTable.shape[0]
+        NumRows = FreqTable.shape[0]        
         FreqTable["Relative_Frequency"] = (FreqTable["Frequency"] / NumRows)
-        FreqTable["Cumsum"] = dataset[columnName].cumsum()
+        FreqTable["Cumsum"] = FreqTable["Relative_Frequency"].cumsum()
         return FreqTable
                 
