@@ -20,7 +20,7 @@ class Univariate():
     def descriptive_Univariate(dataset, quan):
         #Creates Table, calculate Mean, Median, Mode and Percentile, IQR Values and Assign Vales to the respective rows and columns.
         descriptive = pd.DataFrame(index=["Mean", "Median", "Mode", "Q1:25%", "Q2:50%", "Q3:75%", "99%", "Q4:100%", 
-                                          "IQR","1.5Rule", "Lesser", "Greater", "Min","Max"], columns=quan) 
+                                          "IQR","1.5Rule", "Lesser", "Greater", "Min","Max", "Skew", "Kurtosis"], columns=quan) 
         for ColumnName in quan:
             descriptive[ColumnName]["Mean"] = dataset[ColumnName].mean() #Mean
             descriptive[ColumnName]["Median"] = dataset[ColumnName].median() #Median
@@ -40,6 +40,8 @@ class Univariate():
             descriptive[ColumnName]["Greater"] = descriptive[ColumnName]["Q3:75%"] + descriptive[ColumnName]["1.5Rule"] # Lesser Range = Q3+1.5*IQR
             descriptive[ColumnName]["Min"] = dataset[ColumnName].min()
             descriptive[ColumnName]["Max"] = dataset[ColumnName].max()
+            descriptive[ColumnName]["Skew"] = dataset[ColumnName].skew()
+            descriptive[ColumnName]["Kurtosis"] = dataset[ColumnName].kurtosis()
         return descriptive
 
     #Function for Finding Outliers
